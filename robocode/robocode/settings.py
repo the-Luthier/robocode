@@ -125,5 +125,5 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-AUTH_USER_MODEL = 'roboocodeapp.CustomUser'
+AUTH_USER_MODEL = 'robocodeapp.CustomUser'
 
