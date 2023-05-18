@@ -20,5 +20,7 @@ from robocodeapp import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path('login/', views.login, name='login'),
     path('generate/', views.generate, name='generate'),
-]
+] 
+
