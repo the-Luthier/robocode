@@ -5,6 +5,8 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 import openai
+from typing import Any, cast
+
 
 openai.api_key = 'YOUR_OPENAI_API_KEY'
 
@@ -16,10 +18,12 @@ def generate(request):
     response = openai.Completion.create(
         engine="text-davinci-003",
         prompt=prompt,
+        temperature=0.5,
         max_tokens=100
     )
 
     # Extract the generated code from the response
+    response = cast(Any, response)
     generated_code = response.choices[0].text.strip()
 
     # Redact the generated code
