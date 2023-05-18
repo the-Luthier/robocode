@@ -17,7 +17,6 @@ openai.api_key = 'YOUR_OPENAI_API_KEY'
 
 @api_view(['POST'])
 def login(request):
-   def login_view(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
