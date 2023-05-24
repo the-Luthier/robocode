@@ -20,8 +20,16 @@ from .serializers import ForgotPasswordSerializer, SignupSerializer, UserSeriali
 from . import verify
 from .models import User, Notifications, Subscriptions, Profile
 
+import os
+from dotenv import load_dotenv
 
-openai.api_key = 'YOUR_OPENAI_API_KEY'
+dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
+load_dotenv(dotenv_path)
+
+load_dotenv(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env"))
+
+
+openai.api_key = os.getenv('YOUR_OPENAI_API_KEY')
 
 
 
