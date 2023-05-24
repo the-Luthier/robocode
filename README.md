@@ -1,2 +1,2 @@
 # robocode
-AI developer assistant model powered by GPT-4
+AI coding assistant model backend with python-django powered by GPT-4.
