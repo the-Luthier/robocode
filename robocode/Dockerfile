@@ -30,7 +30,7 @@ RUN set -e; set -x; \
     rm -rf ncurses-6.4-20230408 ncurses-6.4-20230408.tgz
 
 # Set Django settings module environment variable
-ENV DJANGO_SETTINGS_MODULE NetGmobile.settings
+ENV DJANGO_SETTINGS_MODULE robocode.settings
 
 # Upgrade pip to the latest version
 RUN pip install --trusted-host pypi.python.org --upgrade pip -v
@@ -50,4 +50,4 @@ COPY . /app/
 EXPOSE 8000
 
 # Run the application
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "NetGmobile.wsgi:application"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "robocode.wsgi:application"]
