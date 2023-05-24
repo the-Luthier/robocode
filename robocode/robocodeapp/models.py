@@ -10,8 +10,6 @@ class SubscriptionTypes(models.TextChoices):
     PREMIUM = 'PREMIUM', 'Premium'
     PRO = 'PRO', 'Pro'
 
-    REQUIRED_FIELDS = ['phone_number', 'full_name', 'adress', 'verification_code', 'is_verified', 'date_of_birth',]
-
 
 class User(AbstractUser):
     full_name = models.CharField(max_length=100, blank=False)
@@ -29,6 +27,7 @@ class User(AbstractUser):
         default=SubscriptionTypes.FREE,
     )
 
+    REQUIRED_FIELDS = ['phone_number', 'full_name', 'adress', 'verification_code', 'is_verified', 'date_of_birth',]
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
