@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: robocode
+spec:
+  selector:
+    app: robocodeapp
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8000
+  type: LoadBalancer
+  loadBalancerSourceRanges:
+  - 192.168.0.1/32
+  - 192.168.0.2/32

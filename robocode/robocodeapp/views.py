@@ -34,19 +34,28 @@ openai.api_key = os.getenv('YOUR_OPENAI_API_KEY')
 
 
 @api_view(['POST'])
-def login(request):
+def login(request):  
+    form = LoginForm(request.POST)    
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
+        username = Profile.objects.get('username')
+        password = request.data.get('password')
+        phone_number = Profile.objects.get('phone_number')
+        
+        if not (username and password and phone_number):
+            return Response({'error': 'Missing required fields'}, status=status.HTTP_400_BAD_REQUEST)
+        
         user = authenticate(request, username=username, password=password)
-
-        if user is not None:
-            login(request, user)
-            return redirect('home')
+        
+        if Profile is not None:
+            verify.send(phone_number)
+            # Store user ID in the session or use a token-based authentication system (e.g., JWT)
+            request.session['user_id'] = Profile.id
+            return Response({'message': 'Verification code sent'}, status=status.HTTP_200_OK)
         else:
-            messages.error(request, 'Invalid username or password.')
+            return Response({'error': 'Invalid username or password'}, status=status.HTTP_401_UNAUTHORIZED)
 
-    return render(request, 'login.html')
+    return Response({'error': 'Method not allowed'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
 
 @api_view(['POST'])
 def generate(request):
