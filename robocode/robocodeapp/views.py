@@ -94,7 +94,7 @@ def signup(request):
             verify.send(serializer.phone_number)
             return redirect('verify_code')
     else :
-     return render(request, 'signup.dart')
+     return render(request, 'signup')
     
                
 @api_view(['POST'])        
@@ -145,7 +145,7 @@ def new_password(request):
           if User is not None:
             return redirect('login')
     else :
-      return render(request, 'new_password.dart')
+      return render(request, 'new_password')
   
   
       
